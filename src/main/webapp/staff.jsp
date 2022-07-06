@@ -19,7 +19,9 @@
     <button type="button" class="btn btn-default" onclick="click2()"> 账户资料管理 </button>
     <button type="button" class="btn btn-default" onclick="click3()">用户电话信息管理</button>
     <button type="button" class="btn btn-default" onclick="click4()"> 账单查询</button>
-    <button type="button" class="btn btn-default" onclick="click5()">返回主页面</button>
+</div>
+<div>
+    <a href="index.jsp">回到上一页</a>
 </div>
 <script>
     function click1() {
@@ -27,16 +29,13 @@
     }
 
     function click2() {
-        window.location.href = "";
+        window.location.href = "account.jsp";
     }
     function click3() {
         window.location.href = "";
     }
     function click4() {
         window.location.href = "";
-    }
-    function click5() {
-        window.location.href = "index.jsp";
     }
 </script>
 </body>

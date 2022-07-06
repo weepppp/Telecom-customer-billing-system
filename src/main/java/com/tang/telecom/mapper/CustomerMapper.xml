@@ -2,7 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tang.telecom.mapper.CustomerMapper">
+    <insert id="insertCustomer" useGeneratedKeys="true" keyProperty="uid">
+        insert into customer (uname,utype) values (#{uname},#{utype})
+    </insert>
+    <update id="updateCustomer">
+        update customer set uname = #{uname},utype = #{utype}  where uid = #{uid}
+    </update>
+    <delete id="deleteCustomer">
+        delete from customer where uid=#{uid}
+    </delete>
     <select id="getCustomer" resultType="com.tang.telecom.entity.Customer">
           select * from customer
+    </select>
+    <select id="getCustomerById" resultType="com.tang.telecom.entity.Customer">
+        select * from customer where uid=#{uid}
     </select>
 </mapper>
