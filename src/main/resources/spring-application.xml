@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <!--    spring的配置文件-->
+
+    <!--    1.包扫描器 排除Controller-->
+    <context:component-scan base-package="com.tang.telecom" use-default-filters="true">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <!--    2.配置数据库-->
+    <context:property-placeholder location="classpath:db.properties"/>
+    <bean class="com.alibaba.druid.pool.DruidDataSource" id="dataSource">
+        <property name="url" value="${db.url}"/>
+        <property name="username" value="${db.username}"/>
+        <property name="password" value="${db.password}"/>
+    </bean>
+
+    <!--    3.配置mybatis-->
+    <!--    3.1 配置mybatis的sqlSessionFactoryBean-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!--给实体类命名-->
+        <property name="typeAliasesPackage" value="com.tang.telecom.entity"/>
+        <property name="mapperLocations">
+            <value>classpath*:com/tang/telecom/mapper/*.xml</value>
+        </property>
+    </bean>
+
+    <!--    3.1 配置mybatis的mapper扫描器-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" id="mapperScannerConfigurer">
+        <property name="basePackage" value="com.tang.telecom.mapper"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean"/>
+    </bean>
+</beans>
