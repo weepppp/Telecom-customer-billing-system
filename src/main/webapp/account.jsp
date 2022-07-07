@@ -41,17 +41,17 @@
             success:function (data) {
                 if (data.code == 200) {
                     // 增加了再刷新页面
-                    loadCustomer();
+                    loadAccount();
                     $("#uname").val('');
                     $("#utype").val('');
                 } else {
-                    alert("此客户不存在，请绑定已存在客户！")
+                    alert("添加有误，请绑定已存在客户或新建未存在账户！")
                 }
             }
         })
     }
 
-    function loadCustomer() {
+    function loadAccount() {
         $.get('/Telecom_customer_billing_system/account/get', function (data) {
             $("#account").html(data);
         });

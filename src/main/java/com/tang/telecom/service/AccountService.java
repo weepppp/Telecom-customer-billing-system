@@ -2,8 +2,10 @@ package com.tang.telecom.service;
 
 import com.tang.telecom.entity.Account;
 import com.tang.telecom.entity.Customer;
+import com.tang.telecom.entity.Phone;
 import com.tang.telecom.mapper.AccountMapper;
 import com.tang.telecom.mapper.CustomerMapper;
+import com.tang.telecom.mapper.PhoneMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,18 +25,21 @@ public class AccountService {
     @Autowired
     CustomerMapper customerMapper;
 
+    @Autowired
+    PhoneMapper phoneMapper;
+
     public List<Account> getAccount(){
         return accountMapper.getAccount();
     }
 
     public Boolean insertAccount(Account account){
-        // 自动生成Ayyyymmddhhmiss格式的aid
+        // 自动生成Ayyyymmddhhmmss格式的aid
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddhhmmss");
         String format = simpleDateFormat.format(new Date());
         String aid = "A" + format;
         account.setAid(aid);
-        // 验证添加记录的uid是否是已经存在的客户id，如果不存在，则添加失败
-        // 此处验证也可以 1.在前端提交数据前就单独查询返回，如果不存在，直接提示“此客户id不存在” 2.前端直接通过下拉框限定可选的客户
+        // 校验添加记录的uid是否是已经存在的客户id，不存在则无法添加
+        // 此处校验也可以 1.在前端提交数据前就单独查询返回，如果不存在，直接提示“此客户id不存在” 2.前端直接通过下拉框限定可选的客户
         Customer customerById = customerMapper.getCustomerById(account.getUid());
         if (customerById == null){
             return false;
@@ -43,7 +48,7 @@ public class AccountService {
     }
 
     public Boolean updateAccount(Account account){
-        // 更新也同样进行uid存在性的校验
+        // 校验添加记录的uid是否是已经存在的客户id，不存在则无法更新
         Customer customerById = customerMapper.getCustomerById(account.getUid());
         if (customerById == null){
             return false;
@@ -57,7 +62,11 @@ public class AccountService {
         if (accountMapper.getAccountById(aid) == null){
             return false;
         }
-        // TODO 根据id查询电话表是否有记录，如果有记录就不能删除该条用户记录
+        // 根据id查询电话表是否有记录，如果有记录就不能删除该条用户记录
+        List<Phone> phone = phoneMapper.getPhoneByAid(aid);
+        if (phone.size() != 0){
+            return false;
+        }
         if (accountMapper.deleteAccount(aid)==1){
             return true;
         }

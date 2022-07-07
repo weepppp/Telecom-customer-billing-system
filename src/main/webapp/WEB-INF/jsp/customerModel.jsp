@@ -41,6 +41,8 @@
                     loadCustomer();
                     $("#uname1").val('');
                     $("#utype1").val('');
+                } else {
+                    alert("无法更新为已有用户")
                 }
             }
         })

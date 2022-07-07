@@ -17,4 +17,7 @@
     <select id="getCustomerById" resultType="com.tang.telecom.entity.Customer">
         select * from customer where uid=#{uid}
     </select>
+    <select id="getCustomerByName" resultType="com.tang.telecom.entity.Customer">
+        select * from customer where uname=#{uname}
+    </select>
 </mapper>

@@ -32,10 +32,10 @@
         window.location.href = "account.jsp";
     }
     function click3() {
-        window.location.href = "";
+        window.location.href = "phone.jsp";
     }
     function click4() {
-        window.location.href = "";
+        window.location.href = "bill.jsp";
     }
 </script>
 </body>

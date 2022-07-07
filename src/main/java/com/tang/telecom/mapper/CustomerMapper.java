@@ -20,4 +20,7 @@ public interface CustomerMapper {
     int updateCustomer(Customer customer);
     // 删除
     int deleteCustomer(@Param("uid") Integer uid);
+
+    Customer getCustomerByName(@Param("uname") String uname);
+
 }

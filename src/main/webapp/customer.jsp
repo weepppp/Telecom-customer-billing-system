@@ -34,6 +34,8 @@
                     loadCustomer();
                     $("#uname").val('');
                     $("#utype").val('');
+                } else {
+                    alert("请不要重复添加用户!");
                 }
             }
         })

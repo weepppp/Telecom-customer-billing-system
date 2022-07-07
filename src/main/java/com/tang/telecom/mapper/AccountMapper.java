@@ -21,4 +21,5 @@ public interface AccountMapper {
 
     List<Account> getAccountByUid(@Param("uid")Integer uid);
 
+
 }

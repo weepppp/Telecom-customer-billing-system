@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tang.telecom.mapper.PhoneMapper">
+    <insert id="insertPhone">
+        insert into phone (phoneNumber,phoneAddress,aid) values (#{phoneNumber},#{phoneAddress},#{aid})
+    </insert>
+    <update id="updatePhone">
+        update phone set phoneNumber=#{phoneNumber},phoneAddress=#{phoneAddress},aid=#{aid} where pid = #{pid}
+    </update>
+    <delete id="deletePhone">
+        delete from phone where pid = #{pid}
+    </delete>
+    <select id="getPhone" resultType="com.tang.telecom.entity.Phone">
+        select * from phone
+    </select>
+    <select id="getPhoneById" resultType="com.tang.telecom.entity.Phone">
+        sslect * from phone where pid = #{pid}
+    </select>
+    <select id="getPhoneByAid" resultType="com.tang.telecom.entity.Phone">
+        select * from phone where aid = #{aid}
+    </select>
+    <select id="getPhoneByCall" resultType="com.tang.telecom.entity.Phone">
+        select * from phone where phoneNumber = #{phoneNumber}
+    </select>
+</mapper>

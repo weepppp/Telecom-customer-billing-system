@@ -40,6 +40,7 @@ public class AccountController {
 
     @DeleteMapping("/delete/{aid}")
     public R deleteCustomer(@PathVariable String aid){
+    // 如果传入的参数不是纯数字的字符，那么对参数不进行处理会被浏览器解析为变量。然后就会报not defined
         if (accountService.deleteAccount(aid)){
             return R.ok("删除成功");
         }

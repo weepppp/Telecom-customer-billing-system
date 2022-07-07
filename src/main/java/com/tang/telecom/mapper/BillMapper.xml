@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tang.telecom.mapper.BillMapper">
+    <insert id="insertBill">
+        insert into bill (bid,callNamber,calledNamber,callTime,callFee) values (#{bid},#{callNamber},#{calledNamber},#{callTime},#{callFee})
+    </insert>
+
+    <select id="getAllBill" resultType="com.tang.telecom.entity.Bill">
+        select * from bill
+    </select>
+    <select id="getAllByCallNumber" resultType="com.tang.telecom.entity.Bill">
+        select * from bill
+        <where>
+            <if test="callNamber != null">
+                callNamber = #{callNamber}
+            </if>
+            <if test="calledNamber != null">
+                and calledNamber = #{calledNamber}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -9,7 +9,7 @@
 欢迎进入电信计费系统，请点击下列选项进入操作界面：
 <div class="btn-group">
     <button type="button" class="btn btn-default" onclick="click1()">电信工作人员</button>
-    <button type="button" class="btn btn-default" onclick="click2()">用户角色</button>
+    <button type="button" class="btn btn-default" onclick="click2()">用户</button>
 </div>
 <script>
     function click1() {
@@ -17,7 +17,7 @@
     }
 
     function click2() {
-        window.location.href = "";
+        window.location.href = "billClient.jsp";
     }
 </script>
 </body>
