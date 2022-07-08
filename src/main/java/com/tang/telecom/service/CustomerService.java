@@ -45,14 +45,13 @@ public class CustomerService {
     }
 
     public Boolean deleteCustomer(Integer uid) {
-
+        // 不直接在数据库使用联合查询，全在service进行相关的表查询
         // 具体校验的错误结果均可通过不同的status信息返回给前端
 
         // 记录的存在性校验
         if (customerMapper.getCustomerById(uid) == null){
             return false;
         }
-        // 不直接在数据库使用联合查询，全在service进行相关的表查询
         // 根据id查询账户表是否有记录，如果有记录就不能删除该条用户记录
         List<Account> accounts = accountMapper.getAccountByUid(uid);
         if (accounts.size() != 0){
