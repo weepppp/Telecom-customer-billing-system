@@ -23,6 +23,9 @@
         <button class="btn btn-default" onclick="addBIll()">提交</button>
     </div>
 </form>
+<div>
+    <a href="index">上一页</a>
+</div>
 <script>
     function addBIll() {
         let callNamber = $("#callNamber").val();

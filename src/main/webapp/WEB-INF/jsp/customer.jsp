@@ -15,7 +15,7 @@
 <div id="customer">
 </div>
 <div>
-    <a href="staff.jsp">回到上一页</a>
+    <a href="index">上一页</a>
 </div>
 <script>
     // 增加

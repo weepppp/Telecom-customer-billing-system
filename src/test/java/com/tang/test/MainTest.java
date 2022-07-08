@@ -1,5 +1,7 @@
 package com.tang.test;
 
+import org.apache.shiro.crypto.hash.Md5Hash;
+
 import java.math.BigDecimal;
 
 /**
@@ -7,8 +9,8 @@ import java.math.BigDecimal;
  **/
 public class MainTest {
     public static void main(String[] args) {
-        Double a = 0.9;
-        long l = a.longValue();
-        System.out.println(l);
+
+        Md5Hash md5Hash2 = new Md5Hash("456", "zhaosi", 1024);
+        System.out.println(md5Hash2);
     }
 }
