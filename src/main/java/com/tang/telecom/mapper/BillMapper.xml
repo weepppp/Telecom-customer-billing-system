@@ -12,10 +12,10 @@
     <select id="getAllByCallNumber" resultType="com.tang.telecom.entity.Bill">
         select * from bill
         <where>
-            <if test="callNamber != null">
-                callNamber = #{callNamber}
+            <if test="callNamber != null and callNamber !=''">
+                 callNamber = #{callNamber}
             </if>
-            <if test="calledNamber != null">
+            <if test="calledNamber != null and calledNamber !=''">
                 and calledNamber = #{calledNamber}
             </if>
         </where>

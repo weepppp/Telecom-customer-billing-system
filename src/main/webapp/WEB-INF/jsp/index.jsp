@@ -27,7 +27,7 @@
     <div><shiro:hasPermission name="staff:customer"><a href="/Telecom_customer_billing_system/customer">客户资料管理</a></shiro:hasPermission></div>
     <div><shiro:hasPermission name="staff:account"><a href="/Telecom_customer_billing_system/account">账户资料管理</a></shiro:hasPermission></div>
     <div><shiro:hasPermission name="staff:phone"><a href="/Telecom_customer_billing_system/phone">用户电话信息管理</a></shiro:hasPermission></div>
-    <div><shiro:hasPermission name="staff:bill"><a href="/Telecom_customer_billing_system/bill">账单查询</a></shiro:hasPermission></div>
+    <div><shiro:hasPermission name="staff:bill"><a href="/Telecom_customer_billing_system/bill/get">账单查询</a></shiro:hasPermission></div>
     <div><shiro:hasPermission name="customer:bill"><a href="/Telecom_customer_billing_system/billClient">接打电话</a></shiro:hasPermission></div>
     <div><shiro:user><a href="/Telecom_customer_billing_system/logout">注销登录</a></shiro:user></div>
 </div>

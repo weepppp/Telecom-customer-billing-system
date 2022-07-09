@@ -27,6 +27,19 @@
         <property name="mapperLocations">
             <value>classpath*:com/tang/telecom/mapper/*.xml</value>
         </property>
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <!--使用下面的方式配置参数，一行配置一个 -->
+                        <value>
+                            <!-- 如有需要可以添加配置,默认即可 -->
+                            helperDialect=mysql
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
 
     <!--    3.1 配置mybatis的mapper扫描器-->

@@ -1,5 +1,7 @@
 package com.tang.telecom.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.tang.telecom.entity.Bill;
 import com.tang.telecom.service.BillService;
 import com.tang.telecom.units.R;
@@ -25,9 +27,20 @@ public class BillController {
     BillService billService;
 
     @GetMapping("/get")
-    public ModelAndView getAllBill() {
+    public ModelAndView getAllBill(String pageNum,Model model) {
         ModelAndView modelAndView = new ModelAndView("billModel");
-        modelAndView.addObject("bill", billService.getAllBill());
+        Integer pageNum1;
+        if (pageNum == null || "".equals(pageNum)) {
+            pageNum1 = 1;
+        } else {
+            pageNum1 = Integer.parseInt(pageNum);
+        }
+        Integer pageSize = 2;
+        PageHelper.startPage(pageNum1,pageSize);
+        List<Bill> allBill = billService.getAllBill();
+        PageInfo<Bill> pageUtils = new PageInfo<Bill>(allBill);
+        model.addAttribute("bill",allBill);
+        model.addAttribute("page",pageUtils);
         return modelAndView;
     }
 

@@ -6,6 +6,15 @@
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 </head>
 <body>
+<div>
+    <form action="/Telecom_customer_billing_system/bill/search">
+        请输入电话号码：
+        主叫号： <input type="text" name="callNamber" id="callNamber">
+        被叫号：<input type="text" name="calledNamber" id="calledNamber">
+        <input type="submit" value="查找">
+    </form>
+</div>
+<hr>
 <table border="1px">
     <tr>
         <td>账单号</td>
@@ -24,5 +33,17 @@
         </tr>
     </c:forEach>
 </table>
+
+<div style="margin-left: 200px">
+    <a href="/Telecom_customer_billing_system/bill/get?pageNum=1">首页</a>
+    <c:if test="${page.pageNum > 1}">
+        <a href="/Telecom_customer_billing_system/bill/get?pageNum=${page.pageNum - 1}">上一页</a>
+    </c:if>
+    <c:if test="${page.pageNum < page.pages}">
+        <a href="/Telecom_customer_billing_system/bill/get?pageNum=${page.pageNum + 1}">下一页</a>
+    </c:if>
+    <a href="/Telecom_customer_billing_system/bill/get?pageNum=${page.pages}">末页</a>
+</div>
+
 </body>
 </html>
