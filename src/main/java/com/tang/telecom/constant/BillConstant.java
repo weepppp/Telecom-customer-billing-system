@@ -1,6 +1,5 @@
 package com.tang.telecom.constant;
 
-import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * @author weepppp 2022/7/7 19:48

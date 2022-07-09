@@ -45,7 +45,8 @@ public class CustomerService {
     }
 
     public Boolean deleteCustomer(Integer uid) {
-        // 不直接在数据库使用联合查询，全在service进行相关的表查询
+
+        // 不直接在数据库使用联合查询，全在service进行关联表查询
         // 具体校验的错误结果均可通过不同的status信息返回给前端
 
         // 记录的存在性校验
