@@ -7,7 +7,7 @@ package com.tang.telecom.constant;
 public class BillConstant {
 
    /**
-    * @功能 定义枚举类，方便常量数据的修改更新
+    * @功能 定义枚举类，增加程序可读性、降低耦合性，保证类型安全
     */
 
    // 供应商收费表

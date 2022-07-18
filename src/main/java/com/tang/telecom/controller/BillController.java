@@ -57,7 +57,7 @@ public class BillController {
     @PostMapping("/insert")
     public R insertBill(@RequestBody Bill bill){
         if (billService.insertBill(bill)){
-            return R.ok("添加成功",bill);
+            return R.ok("添加成功");
         }
         return R.error("添加失败");
     }

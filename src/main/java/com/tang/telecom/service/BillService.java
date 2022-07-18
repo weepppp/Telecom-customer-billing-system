@@ -5,10 +5,13 @@ import com.tang.telecom.entity.*;
 import com.tang.telecom.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author weepppp 2022/7/7 18:30
@@ -35,19 +38,19 @@ public class BillService {
         return billMapper.getAllBill();
     }
 
+
     public List<Bill> getAllByCallNumber(String callNamber, String calledNamber) {
         return billMapper.getAllByCallNumber(callNamber, calledNamber);
     }
 
+
     public boolean insertBill(Bill bill) {
-
         // 生成账单分为以下几步
-
         // 1 判断号码是否存在：只有主被双方在用户电话表中都注册过，且拨号方为电信，才能被记录
         Phone callPhone = phoneMapper.getPhoneByCall(bill.getCallNamber());
         Fixedphone byFixedPhoneNumber = fixedphoneMapper.getByFixedPhoneNumber(bill.getCallNamber());
         Phone calledByPhone = phoneMapper.getPhoneByCall(bill.getCalledNamber());
-        if (callPhone == null || calledByPhone == null || (!BillConstant.Fee.CALL_TELECOM.getCallType().equals(byFixedPhoneNumber.getSupplier()))){
+        if (callPhone == null || calledByPhone == null || (!BillConstant.Fee.CALL_TELECOM.getCallType().equals(byFixedPhoneNumber.getSupplier()))) {
             return false;
         }
         // 2 自动生成主id
@@ -79,11 +82,11 @@ public class BillService {
             bill.setCallFee(fee);
         }
         // 4 生成账单后，对账户表进行相应的余额扣除
-        // double转long有精度丢失的问题
-        Long cost1 = accountCallPhone.getCurMonthAmount() +Math.round(bill.getCallFee());
+        Long cost1 = accountCallPhone.getCurMonthAmount() + Math.round(bill.getCallFee());
         accountCallPhone.setCurMonthAmount(cost1);
         Long cost2 = accountCallPhone.getCostAmount() + Math.round(bill.getCallFee());
         accountCallPhone.setCostAmount(cost2);
+        accountMapper.updateAccount(accountCallPhone);
         // 5 调用接口
         if (billMapper.insertBill(bill) == 1) {
             return true;

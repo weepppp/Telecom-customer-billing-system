@@ -4,6 +4,7 @@ package com.tang.telecom.units;
  * @author weepppp 2022/7/6 9:27
  **/
 public class R {
+
     private String msg;
     private Integer code;
     private Object data;

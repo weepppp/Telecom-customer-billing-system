@@ -14,6 +14,15 @@
     <mvc:annotation-driven/>
 
     <mvc:resources mapping="/**" location="/"/>
+
+    <mvc:view-controller path="/account" view-name="account"/>
+    <mvc:view-controller path="/customer" view-name="customer"/>
+    <mvc:view-controller path="/phone" view-name="phone"/>
+    <mvc:view-controller path="/bill" view-name="bill"/>
+    <mvc:view-controller path="/billClient" view-name="billClient"/>
+    <mvc:view-controller path="/login" view-name="login"/>
+    <mvc:view-controller path="/index" view-name="index"/>
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>

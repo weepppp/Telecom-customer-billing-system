@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 
-    @RequestMapping("/login")
-    public String login() {
-        return "login";
-    }
+//    @RequestMapping("/login")
+//    public String login() {
+//        return "login";
+//    }
 
     @PostMapping("/dologin")
     public String dologin(String username, String password, Model model, String rememberMe) {
@@ -38,35 +38,35 @@ public class LoginController {
         return "forward:/login";
     }
 
-    @GetMapping("/index")
-    public String index(){
-        return "index";
-    }
-
-    @GetMapping("/account")
-    public String account(){
-        return "account";
-    }
-
-    @GetMapping("/customer")
-    public String customer(){
-        return "customer";
-    }
-
-    @GetMapping("/phone")
-    public String phone(){
-        return "phone";
-    }
-
-    @GetMapping("/bill")
-    public String bill(){
-        return "bill";
-    }
-
-    @GetMapping("/billClient")
-    public String billClient(){
-        return "billClient";
-    }
+//    @GetMapping("/index")
+//    public String index(){
+//        return "index";
+//    }
+//
+//    @GetMapping("/account")
+//    public String account(){
+//        return "account";
+//    }
+//
+//    @GetMapping("/customer")
+//    public String customer(){
+//        return "customer";
+//    }
+//
+//    @GetMapping("/phone")
+//    public String phone(){
+//        return "phone";
+//    }
+//
+//    @GetMapping("/bill")
+//    public String bill(){
+//        return "bill";
+//    }
+//
+//    @GetMapping("/billClient")
+//    public String billClient(){
+//        return "billClient";
+//    }
 
 
 }
