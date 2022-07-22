@@ -25,6 +25,10 @@ public class CustomerService {
         return customerMapper.getCustomer();
     }
 
+
+    // 所有唯一性校验，都可以抛出不同自定义异常，让controller捕获到不同异常并进行不同的返回处理
+    // 此处就直接返回false
+
     public Boolean insertCustomer(Customer customer){
         // 新增用户进行非重复校验
         Customer customer1 = customerMapper.getCustomerByName(customer.getUname());

@@ -43,7 +43,6 @@ public class BillService {
         return billMapper.getAllByCallNumber(callNamber, calledNamber);
     }
 
-
     public boolean insertBill(Bill bill) {
         // 生成账单分为以下几步
         // 1 判断号码是否存在：只有主被双方在用户电话表中都注册过，且拨号方为电信，才能被记录
@@ -61,7 +60,7 @@ public class BillService {
         // 3 根据号码类型、客户类型及通话时长生成话费和账单
         // 主叫方只会为电信用户，被叫方可以为电信 移动 联通 铁通用户
         // 把本业务场景暂且设定为用户电话表可以登记不同供应商用户号码，费用表费用字段只统计主叫方也就是相关电信用户的消费
-        // 由于主叫方为电信用户时，费用是固定的，因此不用做号码类型的判别，只需判断客户类型即可
+        // 由于主叫方为电信用户时，费用是固定的，因此不用做号码类型的判别，只需判断客户 类型即可
         Account accountCallPhone = accountMapper.getAccountById(callPhone.getAid());
         Customer customerCallPhone = customerMapper.getCustomerById(accountCallPhone.getUid());
         if (customerCallPhone.getUtype().equals(BillConstant.Discount.COUSTOMER_ONE.getCusType())) {

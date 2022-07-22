@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
+
 /**
  * @author weepppp 2022/7/6 22:53
  **/
@@ -23,7 +25,7 @@ public class AccountController {
     }
 
     @PostMapping("/insert")
-    public R insertAccount(@RequestBody Account account){
+    public R insertAccount( @Valid @RequestBody Account account){
         if (accountService.insertAccount(account)){
             return R.ok("添加成功",account);
         }

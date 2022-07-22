@@ -3,14 +3,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
-    <!--    spring的配置文件-->
 
-    <!--    1.包扫描器 排除Controller-->
     <context:component-scan base-package="com.tang.telecom" use-default-filters="true">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
-    <!--    2.配置数据库-->
     <context:property-placeholder location="classpath:db.properties"/>
     <bean class="com.alibaba.druid.pool.DruidDataSource" id="dataSource">
         <property name="url" value="${db.url}"/>
@@ -18,11 +15,8 @@
         <property name="password" value="${db.password}"/>
     </bean>
 
-    <!--    3.配置mybatis-->
-    <!--    3.1 配置mybatis的sqlSessionFactoryBean-->
     <bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <!--给实体类命名-->
         <property name="typeAliasesPackage" value="com.tang.telecom.entity"/>
         <property name="mapperLocations">
             <value>classpath*:com/tang/telecom/mapper/*.xml</value>
@@ -31,9 +25,7 @@
             <array>
                 <bean class="com.github.pagehelper.PageInterceptor">
                     <property name="properties">
-                        <!--使用下面的方式配置参数，一行配置一个 -->
                         <value>
-                            <!-- 如有需要可以添加配置,默认即可 -->
                             helperDialect=mysql
                         </value>
                     </property>
@@ -42,39 +34,25 @@
         </property>
     </bean>
 
-    <!--    3.1 配置mybatis的mapper扫描器-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer" id="mapperScannerConfigurer">
         <property name="basePackage" value="com.tang.telecom.mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactoryBean"/>
     </bean>
 
 
-
     <bean class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" id="securityManager">
         <property name="realm" ref="myRealm"/>
         <property name="sessionManager">
             <bean class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
-                <!--不开启 url 地址中的 sessionid 重写功能，也就是 sessionid 只能放在 Cookie 中-->
                 <property name="sessionIdUrlRewritingEnabled" value="false"/>
             </bean>
         </property>
     </bean>
-    <!--3.配置过滤器-->
     <bean class="org.apache.shiro.spring.web.ShiroFilterFactoryBean" id="shiroFilter">
         <property name="securityManager" ref="securityManager"/>
-        <!--配置登录地址，如果访问一个需要登录后才能访问的页面，就会自动跳转到 /login -->
         <property name="loginUrl" value="/login"/>
-        <!--当用户访问了一个没有权限的接口的时候，展示这个地址给用户-->
         <property name="unauthorizedUrl" value="/unAuthorized"/>
-        <!--配置拦截规则-->
         <property name="filterChainDefinitions">
-            <!--
-            /login=anon 表示 /login 这个路径可以匿名访问
-            /logout=logout 后面的 logout 是注销登录过滤器的简称
-            /**=authc 表示其余的请求，都要认证之后才能访问
-            /index=user 表示 /index 可以通过 rememberme 的方式访问
-            注意这里的顺序
-            -->
             <value>
                 /customer=authc,perms[staff:customer]
                 /account=authc,perms[staff:account]
