@@ -1,0 +1,393 @@
+
+电信客户计费系统
+需求说明书
+
+
+文档信息：
+文件名称：	电信计费需求说明书.doc	文件编号：	DTP-20100308-2
+``项目名称：	电信计费需求说明书
+项目经理：		总设计师：	
+版 本 号：	V1.0	版本日期：	
+制作：		制作日期：	
+审批：		审批日期：	
+审核：		审核日期：	
+
+
+修订记录： 
+版 本 号	修 订 人	修 订 日 期	修 订 内 容
+			
+			
+			
+
+
+
+
+
+
+
+
+
+目   录
+
+1	引言	3
+1.1	编写目的	3
+1.2	编写背景	3
+1.3	术语和缩写解释	4
+1.4	参考资料	5
+2	系统概述	6
+2.1	系统目标	6
+2.2	系统范围	6
+2.3	用户特点	6
+2.4	系统整体设计	7
+3	业务概述	9
+3.1	电信三户模型	9
+3.1.1	客户信息	9
+3.1.1.1	电信客户类型	9
+3.1.1.2	公客	10
+3.1.1.3	商客	10
+3.1.1.4	大客	11
+3.1.1.5	专客	11
+3.1.2	账户信息	11
+3.1.3	用户信息	12
+3.2	通信供应商网间结算	12
+3.3	优惠	13
+3.4	账单	13
+4	功能设计	13
+4.1	后台自动完成	13
+4.1.1.1	数据初始化	13
+4.1.1.2	客户类型	13
+4.1.1.3	供应商及网间结算费率	14
+4.1.1.4	实时计费	14
+4.2	电信工作人员功能	15
+4.2.1.1	输入客户资料	15
+4.2.1.2	输入账户资料	15
+4.2.1.3	输入用户资料	15
+4.2.1.4	账单查询	15
+4.2.1.5	出月账	15
+4.3	用户消费功能	16
+4.3.1.1	打电话	16
+
+1引言
+1.1编写目的
+该文档编写目的主要是为了明确系统需求，和项目干系人达成一致的理解，为将来设计、编码、测试等工作提供参考依据，本项目的预期读者包括：客户、系统分析员、系统设计人员、程序员、测试人员、实施人员和维护人员。
+1.2编写背景
+我国电信行业的发展已日趋成熟,市场竞争也日趋激烈,为了在市场竞争中保持强大的竞争力,电信运营商必须做到在降低成本的同时能够快速灵活高效地部署新业务新需求,来完善和满足客户和市场的需求。因此首要问题就是必须解决业务支撑系统的问题,所以构建省级集中的BOSS(Business&Operation Support System)系统已成为电信运营商支撑系统建设的总体趋势,计费账务系统又是BOSS系统的重要组成部分,特设计计费系统模型,以期形成一整套符合中国电信企业实际情况的理论和实践体系。本文主要讨论电信计费账务系统核心部分计费模块的设计和实现,对于与其他部分无法分离描述或分离后将使表达变得不清时,则将计费账务系统作为整体进行讨论。在充分调研现有系统和参考大量国内外资料的基础上,通过对电信企业计费账务系统进行系统化的设计,目的是将整个计费账务系统进行系统化理论的抽象,从而建立一套稳定、高效、易扩展的解决方案。
+首先分析了电信计费账务系统的项目背景以及国内外发展现状,对系统整体业务流程和需求进行了描述;
+然后对需要解决的关键问题给出具体的实现技术和方法。本文解决的关键问题主要有以下几个
+第一、分析设计了计费账务系统的整体架构和计费模块的功能框架	。
+第二、就计费模块的部分功能进行了详细设计并给出了实现方法。
+第三、就系统的可扩展性、可移植性、适应性等问题举行了探讨。
+本项目所取得的成果已在中国铁通广东分公司计费系统中使用,并取得了良好的效果,随着企业管理水平和业务流程的不断改进,系统架构和功能还将进一步的得到完善和提高
+The telecom sector of our country has developped maturely in gradually , the market competition is becoming fierce day by day. In order to keep stronger competition in market competition, telecom operators must can sell measure with lower than competitor cost, quicker speed and more nimble camp, come to perfect and debut the telecommunication business satisfying customer need, must resolve business propping up the system core part therefore, the settlement-consuming plan system that level concentrates therefore structuring a province entraliezed BOSS (Business&Operation Support System) already becomes telecom operators collectivity trend that system builds. Account affairs-consuming model designing that concentrate a plan specially, to expect that the package forming one accords with Chinese telecom trade reality theory and carries out system.This paper has mainly discussed counts account affairs system core part meter-consuming subsystem-consuming design and realization , with regard to and other, unable separation of part describes that or the separation queen expresses with making when becoming unclear , discusses that then with account affairs-consuming system of plan as overall go along. On the basis surveying now available system sufficiently and consulting the large amount of home and abroad data\'s, systematic design the billing and accounting system of telecom corporation, purpose is abstracting theoretically the entire of the billing and accounting system, thereby build a set of solutions which is stability, high-effect and easy to expand. The paper has analysed telecommunication first in culture counting account affairs system-consuming project background and home and abroad present situation, technological process describes that to system overall business with having needed go along; And then require that the question solving gives concrete realization technology and method . The main body of the paper is resolved has several following mainly: 
+The first have analysed and designed the overall architecture of the billing and accounting system and the function frame of the accounting module. 
+Second, has designed and realized the part function of the accounting module in detail.
+Third,is discussion some question of the extendibility, portability, adaptability,and so on.The achievement of the project is applied to the accounting system of China Tietong Telecommunications Corporation GuangDong Branch, the effect is favourable. With the development of management and business processes,we will further consummate and improve the system frame and fuction
+
+
+
+
+1.3术语和缩写解释
+列出本说明书中专门术语的定义、外文缩写词的原词及中文解释，系统组内达成一致意见的专用词汇及描述。
+缩写、术语	词汇含义	备注
+HB 准实时计费(Hot billing)	俗称热计费。准实时计费是离线计费的一种，其特点是计费系统以联机方式得到使用记录后，马上进行计费，以尽可能缩短用户使用与计费之间的时间差。	
+OCS	在线计费系统(Online Charging System):用于完成在线计费的计费平台系统，能提供预付费批价和实时账务处理等功能。	
+CRM	客户关系管理系统(Customer Relationship Management):主要完成业务受理、销售管理、市场营销、合作伙伴管理、综合客户服务、客户管理、产品管理等功能。	
+ABM	余额管理平台(Account balance management):是为所有BSS系统提供统一的余额数据操作和管理功能的独立系统平台。	
+SID共享数据模型(Share Information Data)	包括数据模型和共享信息2大部分，从电信业务视角、系统视角、实现视角、运行视角等出发，对BSS/OSS不同应用系统的领域信息进行分析，建立客户、产品、定价、账务等数据数据模型，然后根据统一的数据模型建设共享信息数据，建立创建、读取和更新数据的权限矩阵等信息管理和共享机制，建立SID主要目的是解决目前“信息孤岛”的状况。在计费系统，客户关系管理系统（CRM），经营分析系统，结算系统几个主要的信息系统之间需要共享数据包括客户数据，产品数据，以及竞争对手的客户和产品数据	
+
+1.4参考资料
+《中国电信在线计费系统（OCS）总体技术方案》
+《中国电信在线计费系统（OCS）业务需求》
+《中国电信在线计费系统（OCS）技术要求》
+《中国电信在线计费系统OCP接口规范》
+《中国电信在线计费系统SCP设备改造要求》
+《中国电信在线计费系统ISMP设备改造要求》
+《中国电信在线计费系统CCG设备技术要求》
+
+
+
+
+
+2系统概述
+2.1系统目标
+通过使用本系统，可进行电信客户资料的管理、消费和计费
+2.2系统范围
+业务范围主要包括客户资料的管理、客户消费和计费功能
+2.3用户特点
+
+
+电信工作人员：主要录入三户（客户、账户、用户）资料及根据不同条件进行消费账单查询
+客户：指客户拨打电话功能，需要指定电信号拨打不同的提供商号码
+应用系统自动化：主要是系统数据初始化及计费功能
+
+2.4系统整体设计
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3业务概述
+3.1电信三户模型
+
+
+客户：记录客户资料
+账户：记录用于结算电话的银行账号
+用户：指设备（电话）
+
+  一个客户可以拥有多个账户、一个账户可以给多个用户支付
+
+3.1.1客户信息
+3.1.1.1电信客户类型
+电信客户主要分为四种类型
+
+3.1.1.2公客(publicCustomer)
+公客主要是指社会上的散装客户，以家庭、小企业为主
+它所需要的属性有
+
+属性	类型	备注
+客户号	String	自动生成，格式：Cyyyymmddhhmiss
+客户名称	String	如果是单位客户填公司名称，否则填客户姓名
+客户类型	String	指对应的公客、商客、大客、专客
+所属社区	String	　
+
+3.1.1.3商客(businessCusomer)
+商客指行业客户,电信主要分如下行业
+行业（industry）	备注
+金融行业	指银行、证券等
+教育行业	学校、教育机构
+制造行业	工厂等
+机关单位	政府、事业单位
+能源行业	矿产、石油等
+军工行业	部队、公安
+服务行业	餐馆、KTV、旅店
+其它行业	其它
+
+属性	类型	备注
+客户号	String	自动生成，格式：Cyyymmddhhss
+客户名称	String	如果是单位客户填公司名称，否则填客户姓名
+客户类型	String	指对应的公客、商客、大客、专客
+所属社区	String	　
+行业经理	String	一个行业经理负责多个商业客户
+所属行业	String	与行业字典对应
+
+
+
+
+
+
+3.1.1.4大客(bigCusomer)
+大客是指电话数量超过10台的单位，大客户同时也具有行业客户的特点，如银行客户即是金融客户，同时也是大客户，所需属性如下：
+
+属性	类型	备注
+客户号	String	自动生成，格式：Cyyymmddhhss
+客户名称	String	如果是单位客户填公司名称，否则填客户姓名
+客户类型	String	指对应的公客、商客、大客、专客
+所属社区	String	　
+行业经理	String	一个社区经理负责多个商业客户
+所属行业	String	与行业字典对应
+电信专员	String	一个专员只服务一个单位
+
+3.1.1.5专客(speciality)
+如：114 10086 美的售后服务专线等公司客服专线。
+属性	类型	备注
+客户号	String	自动生成，格式：Cyyyymmddhhmiss
+客户名称	String	如果是单位客户填公司名称，否则填客户姓名
+客户类型	String	指对应的公客、商客、大客、专客
+所属社区	String	
+社区经理	String	社区经理
+
+
+3.1.2账户信息(Account)
+账户信息是指给用户支付的银行账号
+属性	类型	备注
+账号ID	String	自动生成，格式Ayyyymmddhhmiss
+客户ID	String	所属客户
+银行账号	String	
+开户行(OpenBank)	String	　指银行如建行、工商行等　
+支行(subBank)	String	　指银行的支行，如番禺支行，天河支行
+预存余额(readyAmount)	Long	　指账上余客额
+消费总额CostAmount	Long	　指装完电话后一直的消费总数
+当月消费额(curMonthAmount)	Long	　指本月消费额
+
+
+
+3.1.3用户（电话号码）信息
+用户是指设备号，即电话号码，一个账号可用于支付多个设备的消费
+属性	类型	备注
+电话号码	String	　
+电话地址	String	　
+结算账号	String	与账号表对应
+
+
+3.2通信供应商网间结算
+中国有几大供应商，不同的供应商之间有不同的结算费率，但目前已经全部是进行呼叫方付费的方式计费，但结算时已经把网间费算进去了，如
+电话号码拨打移动计费每分钟：电信收0.16元/分钟  移动收0.04元/分钟，结算时为0.20元/分钟
+   为了应用系统的正常完成，简单流费率如下：
+主叫供应商	被叫供应商	标准收费(元/分钟)
+电信telecom	电信	0.16
+电信	移动(mobile)	电信	0.16
+		移动	0.04
+电信	联通(Unicom)	电信	0.16
+		联通	0.02
+电信	铁通(TieTong)	电信	0.16
+		铁通	0.01
+
+
+为了使系统简化，本系统初始化各大提供商的号码如下
+
+供应商	电话号码	供应商	电话号码	供应商	电话号码
+移动	13600000001	联通	13100000001	铁通	33000001
+移动	13600000002	联通	13100000002	铁通	33000002
+移动	13600000003	联通	13100000003	铁通	33000003
+移动	13600000004	联通	13100000004	铁通	33000004
+移动	13600000005	联通	13100000005	铁通	33000005
+移动	13600000006	联通	13100000006	铁通	33000006
+移动	13600000007	联通	13100000007	铁通	33000007
+移动	13600000008	联通	13100000008	铁通	33000008
+移动	13600000009	联通	13100000009	铁通	33000009
+移动	13600000010	联通	13100000010	铁通	33000010
+
+
+
+3.3优惠(sale)
+针对不同的客户采用不同的优惠策略,优惠主要是在月结时计算，为简化系统，在这里做实时优惠。
+
+　	结算百分比	备注
+公客	100%	没有优惠
+商客	95%	享有九点五折优惠
+大客	90%	享有九折优惠，同时也能享有商客的优惠
+专客	98%	享有九点八折优惠
+
+
+3.4账单(bill)
+
+为了简化系统，本系统只对电信号码进行计费，每次通话结束后进行计费，计费将根据不同的被叫做不同的计费费率，并对结果进行优惠，同时产生一个账单，账单信息如下：
+
+属性	类型	备注
+账单号	String	自动生成，格式Pyyyymmddhhmiss
+主叫号	String	　
+被叫号	String	　
+通讯时长（分钟)	String	　
+话费(元)	double	　
+
+生成账单后需要在账户信息里扣除相应的款项
+
+
+4功能设计
+4.1后台自动完成
+4.1.1.1数据初始化
+4.1.1.2客户类型
+有公客、商客、大客、专客
+4.1.1.3供应商及网间结算费率
+供应商
+主叫供应商	被叫供应商	标准收费(元/分钟)
+电信	电信	0.16
+电信	移动	电信	0.16
+		移动	0.04
+电信	联通	电信	0.16
+		联通	0.02
+电信	铁通	电信	0.16
+		铁通	0.01
+
+供应商号码
+供应商	电话号码	供应商	电话号码	供应商	电话号码
+移动	13600000001	联通	13100000001	铁通	33000001
+移动	13600000002	联通	13100000002	铁通	33000002
+移动	13600000003	联通	13100000003	铁通	33000003
+移动	13600000004	联通	13100000004	铁通	33000004
+移动	13600000005	联通	13100000005	铁通	33000005
+移动	13600000006	联通	13100000006	铁通	33000006
+移动	13600000007	联通	13100000007	铁通	33000007
+移动	13600000008	联通	13100000008	铁通	33000008
+移动	13600000009	联通	13100000009	铁通	33000009
+移动	13600000010	联通	13100000010	铁通	33000010
+
+4.1.1.4实时计费
+当电信用户拨打电话并结束后，判断被叫号属于哪个供应商，然后根据费率表进行计费
+
+
+
+
+4.2电信工作人员功能
+录入三户资料
+4.2.1.1输入客户资料
+
+
+4.2.1.2输入账户资料
+
+4.2.1.3输入用户(电话号码)资料
+
+
+
+4.2.1.4账单查询
+查询出所有的消费账单信息
+4.2.1.5出月账
+每月进行出账，从账单中进行合计费用并进行优惠
+4.3用户消费功能
+4.3.1.1打电话
+
+
+5菜单设计
+
+5.1主菜单
+
+
+
+5.2电信工作员主页面
+
+5.3客户资料管理
+
+
+
+
+5.4新增客户资料管理
+
+注：
+1、选择客户类型是先列出类型表，供选择
+2、选择行业时也与1类似
+
+
+5.5修改客户资料管理
+
+5.6删除客户资料管理
+
+注：如果该客户下有帐户资料则需先删除账户才能删除（如果该客户下有账户信息则不能删除）
+5.7账户资料管理
+
+
+5.8新增账户资料管理
+
+
+5.9修改账户资料管理
+
+5.10删除账户资料管理
+
+注：如果该账户下有用户，则需先删除用户后才能删除帐户(如果该账户下存在用户则不能删除)
+5.11用户资料管理
+
+5.12新增用户
+
+
+5.13修改用户
+
+
+
+5.14删除用户
+
+输入电话号码是模糊查询(前模糊)
+5.15账单查询
+
+5.16打电话
+
